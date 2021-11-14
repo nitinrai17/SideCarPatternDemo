@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: sampleservice-deploy
+   labels:
+    app: sampleservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sampleservice-pod
+  template:
+    metadata:
+      labels:
+        app: sampleservice-pod
+    spec:
+      containers:
+      - image: sampleservice:0.0.3
+        imagePullPolicy: IfNotPresent
+        name: sampleservice
+        ports:
+        - containerPort: 9991
+          name: http
+        - containerPort: 9992
+          name: https
+        readinessProbe:
+          httpGet:
+            httpHeaders:
+            - name: Accept
+              value: '*/*'
+            path: /actuator/health/readiness
+            port: 9991
+            scheme: HTTP
+          
+  

@@ -1,0 +1,60 @@
+version: "3"
+services:
+   #Zipkin
+   zipkin:
+      image: openzipkin/zipkin
+      container_name: 'zipkin'
+      ports:
+        - '9411:9411'
+      expose:
+        - 9411
+        
+   #Sample Service
+   sampleservice:
+      image: sampleservice:latest
+      container_name: 'sampleservice'
+      build:
+         context: ./SampleService 
+         dockerfile: Dockerfile
+      expose:
+         - 9991
+      ports:
+         - '9991:9991'
+      depends_on:
+         - zipkin 
+
+   #ELK
+   elk:
+      image: myelk:latest
+      container_name: 'myelk'
+      build:
+         context: ./elk 
+         dockerfile: Dockerfile
+      ports:
+         - '5601:5601'
+         - '9200:9200'
+         - '5044:5044'
+      depends_on:
+         - zipkin
+
+   #Prometheus
+   prometheus:
+      image: myprometheus:latest
+      container_name: 'prometheus'
+      build:
+         context: ./prometheus 
+         dockerfile: Dockerfile
+      ports:
+      - '9090:9090'
+
+   #Grafana
+   grafana:
+      image: mygrafana:latest
+      container_name: 'grafana'
+      build:
+         context: ./grafana 
+         dockerfile: Dockerfile
+      ports:
+         - '3000:3000'
+      depends_on:
+         - prometheus

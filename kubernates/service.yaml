@@ -1,0 +1,11 @@
+kind: Service 
+apiVersion: v1
+metadata:
+   name: sampleservice-service
+spec:
+   selector:
+      app: sampleservice-pod
+   ports:
+   - protocol: TCP
+     port: 9991
+   type: NodePort
