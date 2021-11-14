@@ -14,7 +14,7 @@ Grafana        - 3000 <br/>
 Kibana         - 5601 <br/>
 
 
-<img src="img/sidecar2.png"/>
+<img src="img/sidecar2.PNG"/>
 
 ### First step for running local.
 for Windows Docker-Desktop
