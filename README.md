@@ -51,9 +51,10 @@ This is sample service
 ## Grafana
 <img src="img/Garfana.PNG"/>
 <br/>
+Grafana Login 
+<img src="img/GrafanaLogin.gif" >
+<img src="img/GrafanaDashboard.gif" >
 
 ## Kibana
 <img src="img/Kibana.PNG"/>
-
-
-
+<img src="img/KibanaDashboard.gif"/>
