@@ -17,4 +17,4 @@ EXPOSE 9991
 
 COPY --from=GRADLE_BUILD /home/gradle/build/libs/*.jar /app/SampleService.jar
 
-#ENTRYPOINT ["java", "-jar", "SampleService.jar"]
+ENTRYPOINT ["java", "-jar", "SampleService.jar"]
